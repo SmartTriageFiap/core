@@ -10,6 +10,12 @@ import (
 	"github.com/gorilla/mux"
 )
 
+// POST /v1/hmv/{cpf}
+func InitService(w http.ResponseWriter, r *http.Request) {
+	cpf := services.Encrypt(mux.Vars(r)["cpf"])
+	database.InitServiceDB(cpf)
+}
+
 // GET /v1/hmv/questions
 func ReturnAllQuestions(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(database.ReturnAllQuestionsDB())

@@ -10,6 +10,10 @@ func SaveAnswersDB(answer models.Answer) {
 	fmt.Println(answer)
 }
 
+func InitServiceDB(cpf string) {
+	fmt.Println("Save:", cpf)
+}
+
 func UpdateAnswersDB(answer models.Answer) {
 	fmt.Println("Update:")
 	fmt.Println(answer)

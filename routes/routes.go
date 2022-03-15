@@ -13,6 +13,7 @@ import (
 func HandleRequest() {
 	r := mux.NewRouter()
 	r.Use(middleware.ContentTypeMiddleware)
+	r.HandleFunc("/v1/hmv/{cpf}", controllers.InitService).Methods("Post")
 	r.HandleFunc("/v1/hmv/questions", controllers.ReturnAllQuestions).Methods("Get")
 	r.HandleFunc("/v1/hmv/questions/{cpf}", controllers.SaveAnswers).Methods("Post")
 	r.HandleFunc("/v1/hmv/questions/qrcode/{shortId}", controllers.ReturnQuestionsAndAnswersByShortId).Methods("Get")
