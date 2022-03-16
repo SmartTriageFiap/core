@@ -23,7 +23,7 @@ RUN CGO_ENABLED=0 go build -o /app/bin/main
 #COPY --from=builder /etc/passwd /etc/passwd
 #COPY --from=builder /etc/group /etc/group
 #COPY --from=builder /app/bin/main /app/bin/main
-#EXPOSE 8080
+#EXPOSE 8000
 #USER appuser:appuser
 
 ENTRYPOINT ["/app/bin/main"]

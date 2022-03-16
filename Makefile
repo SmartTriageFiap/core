@@ -14,7 +14,7 @@ docker-stop:
 	docker rm smart_triage_mongo
 
 docker-mongo:
-	docker run --name smart_triage_mongo -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=${MG_USER} -e MONGO_INITDB_ROOT_PASSWORD=${MG_PASS} -d mongo:latest
+	docker run --name smart_triage_mongo -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=${MG_USER} -e MONGO_INITDB_ROOT_PASSWORD=${MG_PASS} -d mongo:latest	
 
 docker-build:
 	docker build -t core-app .
