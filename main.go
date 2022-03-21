@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"hmv-rest-api/mocks"
 	"hmv-rest-api/routes"
 	"os"
 
@@ -19,5 +20,9 @@ func main() {
 	os.Setenv("MG_ADDR", "localhost")
 	os.Setenv("MG_PORT", "27017")
 
+	mocks.LoadQuestions()
+
 	routes.HandleRequest()
 }
+
+// export GO111MODULE=on

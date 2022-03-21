@@ -1,0 +1,61 @@
+{
+    
+    "questions" : [
+        {
+            "id" : "1",
+            "description" : "Você sente algum desconforto no peito/tórax?",
+            "typeanswer" : "BOOL",
+            "answer" : ""
+        },
+        {
+            "id" : "2",
+            "description" : "Essa dor, irradia-se para outras áreas do corpo?",
+            "typeanswer" : "BOOL",
+            "answer" : ""
+        },
+        {
+            "id" : "3",
+            "description" : "A área de irradiação é entre a mandíbula e o umbigo?",
+            "typeanswer" : "BOOL",
+            "answer" : ""
+        },
+        {
+            "id" : "4",
+            "description" : "A dor irradia-se para algum dos braços?",
+            "typeanswer" : "BOOL",
+            "answer" : ""
+        },
+        {
+            "id" : "5",
+            "description" : "Essa dor parece com pontadas?",
+            "typeanswer" : "BOOL",
+            "answer" : ""
+        },
+        {
+            "id" : "6",
+            "description" : "Essa dor, parece um aperto, opressão, pressão ou queimação?",
+            "typeanswer" : "BOOL",
+            "answer" : ""
+        },
+        {
+            "id" : "7",
+            "description" : "Você já está com essa dor a mais de 20 minutos?",
+            "typeanswer" : "BOOL",
+            "answer" : ""
+        },
+        {
+            "id" : "8",
+            "description" : "Antes da dor, você fez exercícios físicos, uma refeição pesada ou passou alguma forte emoção?",
+            "typeanswer" : "BOOL",
+            "answer" : ""
+        },
+        {
+            "id" : "9",
+            "description" : "Você sente algum desses sintomas? Suor excessivo, falta de ar, vômito, palpitações, palidez?",
+            "typeanswer" : "BOOL",
+            "answer" : ""
+        }
+
+    ]
+
+}

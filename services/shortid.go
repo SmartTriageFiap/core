@@ -1,14 +1,12 @@
 package services
 
 import (
-	"hmv-rest-api/database"
-
 	qrcode "github.com/skip2/go-qrcode"
 )
 
 func GenerateCodes(cpf string) (string, []byte) {
 	var png []byte
-	shortId := database.GetShortId(cpf)
+	shortId := ""
 
 	png, err := qrcode.Encode(shortId, qrcode.Medium, 256)
 
