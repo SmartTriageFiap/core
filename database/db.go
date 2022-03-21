@@ -11,7 +11,6 @@ import (
 )
 
 func Connect() *mongo.Database {
-	fmt.Println("Conectando no mongodb")
 	connectionURI := fmt.Sprintf("mongodb://%s:%s@%s:%s/",
 		os.Getenv("MG_USER"),
 		os.Getenv("MG_PASS"),
@@ -30,8 +29,6 @@ func Connect() *mongo.Database {
 	}
 
 	db := client.Database("hmv")
-
-	fmt.Println("Conectado!")
 
 	return db
 }

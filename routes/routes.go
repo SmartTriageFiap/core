@@ -13,7 +13,8 @@ import (
 func HandleRequest() {
 	r := mux.NewRouter()
 	r.Use(middleware.ContentTypeMiddleware)
-	r.HandleFunc("/v1/hmv/questions/{cpf}", controllers.ReturnQuestions).Methods("Get")
+	r.HandleFunc("/v1/hmv/questions", controllers.ReturnQuestions).Methods("Get")
+	r.HandleFunc("/v1/hmv/questions/{cpf}", controllers.CheckPacient).Methods("Get")
 	r.HandleFunc("/v1/hmv/questions/{cpf}", controllers.SaveAnswers).Methods("Post")
 	r.HandleFunc("/v1/hmv/questions/{cpf}", controllers.UpdadeAnswers).Methods("Put")
 	r.HandleFunc("/v1/hmv/questions/{cpf}/confirm", controllers.SavePatientData).Methods("Post")

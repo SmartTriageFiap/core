@@ -14,11 +14,13 @@ import (
 )
 
 var (
+	CollectionQueue     *mongo.Collection
+	CollectionPatient   *mongo.Collection
 	CollectionQuestions *mongo.Collection
 	Ctx                 = context.TODO()
 )
 
-func LoadQuestions() {
+func LoadMockDB() {
 
 	//Database
 	db := database.Connect()
@@ -37,6 +39,7 @@ func LoadQuestions() {
 	var questions models.Questions
 	json.Unmarshal(byteValue, &questions)
 
+	//Load data
 	for i := 0; i < len(questions.Questions); i++ {
 		fmt.Println("----------------------------------------------------------------")
 		fmt.Println("User Id: " + questions.Questions[i].Id)

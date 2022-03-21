@@ -20,7 +20,7 @@ func main() {
 	os.Setenv("MG_ADDR", "localhost")
 	os.Setenv("MG_PORT", "27017")
 
-	mocks.LoadQuestions()
+	mocks.LoadMockDB()
 
 	routes.HandleRequest()
 }

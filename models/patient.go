@@ -1,6 +1,7 @@
 package models
 
 type Patient struct {
+	Salt     string `json:"salt"`
 	Cpf      string `json:"cpf"`
 	FullName string `json:"full_name"`
 	Phone    string `json:"phone"`
