@@ -1,14 +1,16 @@
 package services
 
 import (
+	"strings"
+
 	qrcode "github.com/skip2/go-qrcode"
 )
 
-func GenerateCodes(cpf string) (string, []byte) {
+func GenerateCodes(salt string) (string, []byte) {
 	var png []byte
-	shortId := ""
+	shortId := strings.ToUpper(salt[10:19])
 
-	png, err := qrcode.Encode(shortId, qrcode.Medium, 256)
+	png, err := qrcode.Encode(salt, qrcode.Medium, 256)
 
 	if err != nil {
 		panic(err)

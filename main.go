@@ -26,3 +26,4 @@ func main() {
 }
 
 // export GO111MODULE=on
+// make docker-stop && make docker-mongo && go run main.go

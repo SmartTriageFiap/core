@@ -1,3 +1,4 @@
 bin/*
 .metals/*
 .vscode/*
+aux/*
