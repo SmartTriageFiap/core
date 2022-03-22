@@ -7,11 +7,13 @@ import (
 	"hmv-rest-api/database"
 	"hmv-rest-api/models"
 	"hmv-rest-api/services"
+	"log"
 	"net/http"
 
 	"github.com/gorilla/mux"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
 var (
@@ -86,6 +88,44 @@ func SaveAnswers(w http.ResponseWriter, r *http.Request) {
 }
 
 func UpdadeAnswers(w http.ResponseWriter, r *http.Request) {
+	db := database.Connect()
+	CollectionQueue = db.Collection("queue")
+
+	vars := mux.Vars(r)
+	cpf := vars["cpf"]
+	salt := services.Salt(cpf)
+
+	var updadeAnswersModel models.Answers
+	updadeAnswersModel.Cpf = services.Encrypt(cpf)
+	updadeAnswersModel.Salt = salt
+	json.NewDecoder(r.Body).Decode(&updadeAnswersModel.Answers)
+
+	fmt.Println(updadeAnswersModel)
+
+	opts := options.FindOneAndUpdate().SetUpsert(true)
+	filter := bson.D{{"salt", salt}}
+	update := bson.D{{"$set", updadeAnswersModel}}
+
+	var updatedDocument bson.M
+	err := CollectionQueue.FindOneAndUpdate(
+		Ctx,
+		filter,
+		update,
+		opts,
+	).Decode(&updatedDocument)
+	if err != nil {
+		if err == mongo.ErrNoDocuments {
+			return
+		}
+		log.Fatal(err)
+	}
+	fmt.Printf("updated document %v", updatedDocument["_id"])
+
+	var codes models.ShortId
+	codes.ShortId, codes.QrCode = services.GenerateCodes(fmt.Sprintf("%s/", updatedDocument["_id"]))
+
+	// https://codebeautify.org/base64-to-image-converter conferir qrcode
+	json.NewEncoder(w).Encode(codes)
 
 }
 
