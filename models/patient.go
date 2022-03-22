@@ -10,4 +10,5 @@ type Patient struct {
 type PatientData struct {
 	Patient    Patient `json:"patient"`
 	EmployeeId string  `json:"employee_id"`
+	UnityId    string  `json:"unity_id"`
 }

@@ -18,7 +18,7 @@ import (
 
 var (
 	CollectionQueue     *mongo.Collection
-	CollectionPatient   *mongo.Collection
+	CollectionPatients  *mongo.Collection
 	CollectionQuestions *mongo.Collection
 	Ctx                 = context.TODO()
 )
@@ -130,5 +130,23 @@ func UpdadeAnswers(w http.ResponseWriter, r *http.Request) {
 }
 
 func SavePatientData(w http.ResponseWriter, r *http.Request) {
+	db := database.Connect()
+	CollectionPatients = db.Collection("patients")
+
+	vars := mux.Vars(r)
+	cpf := vars["cpf"]
+	salt := services.Salt(cpf)
+
+	var savePatientData models.PatientData
+
+	json.NewDecoder(r.Body).Decode(&savePatientData)
+	savePatientData.Patient.Salt = salt
+
+	result, err := CollectionPatients.InsertOne(Ctx, savePatientData)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	fmt.Println(result.InsertedID)
 
 }
