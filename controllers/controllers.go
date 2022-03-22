@@ -63,13 +63,10 @@ func SaveAnswers(w http.ResponseWriter, r *http.Request) {
 	cpf := vars["cpf"]
 	salt := services.Salt(cpf)
 
-	var answers []models.Answer
-	json.NewDecoder(r.Body).Decode(&answers)
-
 	var insertAnswersModel models.Answers
 	insertAnswersModel.Cpf = services.Encrypt(cpf)
 	insertAnswersModel.Salt = salt
-	insertAnswersModel.Answers = answers
+	json.NewDecoder(r.Body).Decode(&insertAnswersModel.Answers)
 
 	fmt.Println(insertAnswersModel)
 
