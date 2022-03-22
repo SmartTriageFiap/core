@@ -12,10 +12,10 @@ import (
 
 func Connect() *mongo.Database {
 	connectionURI := fmt.Sprintf("mongodb://%s:%s@%s:%s/",
-		os.Getenv("MG_USER"),
-		os.Getenv("MG_PASS"),
-		os.Getenv("MG_ADDR"),
-		os.Getenv("MG_PORT"))
+		os.Getenv("MONGO_USER"),
+		os.Getenv("MONGO_PASS"),
+		os.Getenv("MONGO_ADDR"),
+		os.Getenv("MONGO_PORT"))
 
 	clientOptions := options.Client().ApplyURI(connectionURI)
 	client, err := mongo.Connect(context.TODO(), clientOptions)

@@ -141,6 +141,7 @@ func SavePatientData(w http.ResponseWriter, r *http.Request) {
 
 	json.NewDecoder(r.Body).Decode(&savePatientData)
 	savePatientData.Patient.Salt = salt
+	savePatientData.Patient.Cpf = services.Encrypt(cpf)
 
 	result, err := CollectionPatients.InsertOne(Ctx, savePatientData)
 	if err != nil {
