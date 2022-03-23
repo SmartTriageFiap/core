@@ -82,7 +82,6 @@ func SaveAnswers(w http.ResponseWriter, r *http.Request) {
 	var codes models.ShortId
 	codes.ShortId, codes.QrCode = services.GenerateCodes(fmt.Sprintf("%s/", result.InsertedID))
 
-	// https://codebeautify.org/base64-to-image-converter conferir qrcode
 	json.NewEncoder(w).Encode(codes)
 
 }
@@ -124,7 +123,6 @@ func UpdadeAnswers(w http.ResponseWriter, r *http.Request) {
 	var codes models.ShortId
 	codes.ShortId, codes.QrCode = services.GenerateCodes(fmt.Sprintf("%s/", updatedDocument["_id"]))
 
-	// https://codebeautify.org/base64-to-image-converter conferir qrcode
 	json.NewEncoder(w).Encode(codes)
 
 }
