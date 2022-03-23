@@ -157,7 +157,7 @@ This will configure the containers and provide all the components for the applic
 - Method: POST  Endpoint: /v1/hmv/questions/{cpf}/confirm
     - Return only status code 200 on success
 
-Do you can convert the qrcode into a image using the link below:
+You can convert the qrcode into an image using the link below:
 https://codebeautify.org/base64-to-image-converter
 
 ## Directories :
