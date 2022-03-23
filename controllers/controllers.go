@@ -23,6 +23,15 @@ var (
 	Ctx                 = context.TODO()
 )
 
+func checkExist(salt string) bool {
+	var result bson.M
+	err := CollectionQueue.FindOne(Ctx, bson.D{{"salt", salt}}).Decode(&result)
+	if err != nil || err == mongo.ErrNoDocuments {
+		return false
+	}
+	return true
+}
+
 func CheckPacient(w http.ResponseWriter, r *http.Request) {
 	db := database.Connect()
 	CollectionQueue = db.Collection("queue")
@@ -71,6 +80,14 @@ func SaveAnswers(w http.ResponseWriter, r *http.Request) {
 	json.NewDecoder(r.Body).Decode(&insertAnswersModel.Answers)
 
 	fmt.Println(insertAnswersModel)
+
+	if checkExist(salt) {
+		filter := bson.D{{"salt", salt}}
+		_, err := CollectionQueue.DeleteOne(Ctx, filter)
+		if err != nil {
+			panic(err)
+		}
+	}
 
 	result, err := CollectionQueue.InsertOne(Ctx, insertAnswersModel)
 	if err != nil {
