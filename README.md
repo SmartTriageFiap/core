@@ -6,7 +6,7 @@ Provide the core component of the SmartTriage solution
 #
 This will compile the application and send a binary to the /bin directory
 
-    make all
+    make compile
 
 
 ## Setup Docker
@@ -15,13 +15,29 @@ This will configure the containers and provide all the components for the applic
 
     make all-docker
 
+To ensure the best way to test this app we highly recommend using all-docker.
+
+In case you deploy in production environment, make sure the environment variables are set correctly.
+
+See variables below:
+
+    - MONGO_ADDR
+        - Mongodb address
+    - MONGO_PORT
+        - Mongodb port
+    - MONGO_USER
+        - Mongo user
+    - MONGO_PASS
+        - Mongodb password
+    - GO_CRIPYT
+        - Key to encrypt and tokenize CPF
 
 
 ## Endpoints
 #
 
-- Method: GET   Endpoint: /v1/hmv/questions  
-    - Response example
+- Method: GET   Endpoint: /v1/hmv/questions   
+    - Example Response:
     ```json
     [
         {
@@ -138,23 +154,124 @@ This will configure the containers and provide all the components for the applic
     }
     ```
 - Method: POST  Endpoint: /v1/hmv/questions/{cpf}
-    - Response example
+    - Example Body:
+    ```json
+    [
+        {   
+            "answer": 1,
+            "id": "1"             
+        },
+        {        
+            "answer": 1,        
+            "id": "2"        
+        },
+        {        
+            "answer": 0,        
+            "id": "3"       
+        },
+        {        
+            "answer": 1,        
+            "id": "4"        
+        },
+        {        
+            "answer": 0,        
+            "id": "5"        
+        },
+        {        
+            "answer": 1,        
+            "id": "6"        
+        },
+        {        
+            "answer": 1,        
+            "id": "7"        
+        },
+        {        
+            "answer": 1,        
+            "id": "8"        
+        },
+        {        
+            "answer": 0,        
+            "id": "9"        
+        }
+    ]
+    ```
+    - Example Response
     ```json
     {
         "qrcode": "iVBORw0KGgoAAAANSUhEUgAAAQAAAAEAAQMAAABmvDolAAAABlBMVEX///8AAABVwtN+AAABn0lEQVR42uyYvfHrIBDEl3GgkBJcCqVBaZSiEhQq0LBv9pDkr+f0P+ZGlxn9Eh/L7QKuuuqqn61I1RprBibOyOeSL2AGcFuRCjfgTrZzyReQ2ARQfSBLO5ccApElqA81h9UzUMHNVO0VMAnvfUD6JvvRgXNGhW1a+nZ/GWIjAydXtMN3MqxfjGdoQHvbbmRF0F9PbJpUfNXDzwMAcgNizVqfgUDOqTRnQO+DfDNspmD8t1HDAyT1qZ9Ns0+zlQ2uAP2ykcNALkil2dKTql0AURLGtCRS212zqfrVWD0AvQmLzqsd28BFydYfoD6QRSFhlqqjstCz7B0AuFdznO6bOrwKCc/G6QKwUYyJOq/a92KZ9t1xhgdkrIEW8MxxSlcA/AEwCWea4xTBNb8GvvGByAqbUTapkHjUOhJwcNUin6JtP6Ef0X1s4LhnWTxQgmeftx/XycGBx4sWdc8qex/cAftTDztw1MNYPQGAGYouYtaAz5c9JwDCnmlXJYZAb8ChatzshtKPsDvgnFH7U499ebuQjg9cddVVf17/AgAA//8RZkON4G3J3QAAAABJRU5ErkJggg==",
         "short_id": "6239E0969"
     }
     ```
+    This qrcode is a base64 image, you just need to convert it to an image again
+
+    ![QRCODE](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAEAAQMAAABmvDolAAAABlBMVEX///8AAABVwtN+AAABn0lEQVR42uyYvfHrIBDEl3GgkBJcCqVBaZSiEhQq0LBv9pDkr+f0P+ZGlxn9Eh/L7QKuuuqqn61I1RprBibOyOeSL2AGcFuRCjfgTrZzyReQ2ARQfSBLO5ccApElqA81h9UzUMHNVO0VMAnvfUD6JvvRgXNGhW1a+nZ/GWIjAydXtMN3MqxfjGdoQHvbbmRF0F9PbJpUfNXDzwMAcgNizVqfgUDOqTRnQO+DfDNspmD8t1HDAyT1qZ9Ns0+zlQ2uAP2ykcNALkil2dKTql0AURLGtCRS212zqfrVWD0AvQmLzqsd28BFydYfoD6QRSFhlqqjstCz7B0AuFdznO6bOrwKCc/G6QKwUYyJOq/a92KZ9t1xhgdkrIEW8MxxSlcA/AEwCWea4xTBNb8GvvGByAqbUTapkHjUOhJwcNUin6JtP6Ef0X1s4LhnWTxQgmeftx/XycGBx4sWdc8qex/cAftTDztw1MNYPQGAGYouYtaAz5c9JwDCnmlXJYZAb8ChatzshtKPsDvgnFH7U499ebuQjg9cddVVf17/AgAA//8RZkON4G3J3QAAAABJRU5ErkJggg==)
+
+
 - Method: PUT   Endpoint: /v1/hmv/questions/{cpf}
-    - Respose example
+    - Example Body:
+    ```json
+    [
+        {   
+            "answer": 0,
+            "id": "1"             
+        },
+        {        
+            "answer": 0,        
+            "id": "2"        
+        },
+        {        
+            "answer": 1,        
+            "id": "3"       
+        },
+        {        
+            "answer": 0,        
+            "id": "4"        
+        },
+        {        
+            "answer": 1,        
+            "id": "5"        
+        },
+        {        
+            "answer": 0,        
+            "id": "6"        
+        },
+        {        
+            "answer": 0,        
+            "id": "7"        
+        },
+        {        
+            "answer": 0,        
+            "id": "8"        
+        },
+        {        
+            "answer": 1,        
+            "id": "9"        
+        }
+    ]
+    ```
+    - Example Response
     ```json
     {
         "qrcode": "iVBORw0KGgoAAAANSUhEUgAAAQAAAAEAAQMAAABmvDolAAAABlBMVEX///8AAABVwtN+AAABn0lEQVR42uyYvfHrIBDEl3GgkBJcCqVBaZSiEhQq0LBv9pDkr+f0P+ZGlxn9Eh/L7QKuuuqqn61I1RprBibOyOeSL2AGcFuRCjfgTrZzyReQ2ARQfSBLO5ccApElqA81h9UzUMHNVO0VMAnvfUD6JvvRgXNGhW1a+nZ/GWIjAydXtMN3MqxfjGdoQHvbbmRF0F9PbJpUfNXDzwMAcgNizVqfgUDOqTRnQO+DfDNspmD8t1HDAyT1qZ9Ns0+zlQ2uAP2ykcNALkil2dKTql0AURLGtCRS212zqfrVWD0AvQmLzqsd28BFydYfoD6QRSFhlqqjstCz7B0AuFdznO6bOrwKCc/G6QKwUYyJOq/a92KZ9t1xhgdkrIEW8MxxSlcA/AEwCWea4xTBNb8GvvGByAqbUTapkHjUOhJwcNUin6JtP6Ef0X1s4LhnWTxQgmeftx/XycGBx4sWdc8qex/cAftTDztw1MNYPQGAGYouYtaAz5c9JwDCnmlXJYZAb8ChatzshtKPsDvgnFH7U499ebuQjg9cddVVf17/AgAA//8RZkON4G3J3QAAAABJRU5ErkJggg==",
         "short_id": "6239E0969"
     }
     ```
+    This qrcode is a base64 image, you just need to convert it to an image again
+
+    ![QRCODE](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAEAAQMAAABmvDolAAAABlBMVEX///8AAABVwtN+AAABn0lEQVR42uyYvfHrIBDEl3GgkBJcCqVBaZSiEhQq0LBv9pDkr+f0P+ZGlxn9Eh/L7QKuuuqqn61I1RprBibOyOeSL2AGcFuRCjfgTrZzyReQ2ARQfSBLO5ccApElqA81h9UzUMHNVO0VMAnvfUD6JvvRgXNGhW1a+nZ/GWIjAydXtMN3MqxfjGdoQHvbbmRF0F9PbJpUfNXDzwMAcgNizVqfgUDOqTRnQO+DfDNspmD8t1HDAyT1qZ9Ns0+zlQ2uAP2ykcNALkil2dKTql0AURLGtCRS212zqfrVWD0AvQmLzqsd28BFydYfoD6QRSFhlqqjstCz7B0AuFdznO6bOrwKCc/G6QKwUYyJOq/a92KZ9t1xhgdkrIEW8MxxSlcA/AEwCWea4xTBNb8GvvGByAqbUTapkHjUOhJwcNUin6JtP6Ef0X1s4LhnWTxQgmeftx/XycGBx4sWdc8qex/cAftTDztw1MNYPQGAGYouYtaAz5c9JwDCnmlXJYZAb8ChatzshtKPsDvgnFH7U499ebuQjg9cddVVf17/AgAA//8RZkON4G3J3QAAAABJRU5ErkJggg==)
 
 - Method: POST  Endpoint: /v1/hmv/questions/{cpf}/confirm
+    - Example Body:
+    ```json
+    {
+        "patient" : {        
+            "full_name": "João da Silva",
+            "phone": "999999999"
+        },
+        "unity_id": "10",
+        "employee_id": "390802"
+    }
+    ```
     - Return only status code 200 on success
 
 You can convert the qrcode into an image using the link below:

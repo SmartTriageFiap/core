@@ -15,6 +15,3 @@ func main() {
 	mocks.LoadMockDB()
 	routes.HandleRequest()
 }
-
-// export GO111MODULE=on
-// make docker-stop && make docker-mongo && go run main.go
