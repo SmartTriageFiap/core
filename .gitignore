@@ -2,3 +2,4 @@ bin/*
 .metals/*
 .vscode/*
 aux/*
+cover.out

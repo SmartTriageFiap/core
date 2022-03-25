@@ -4,6 +4,9 @@ MG_ADDR="localhost"
 MG_PORT="27017"
 GO_CRIPYT="45f84bddefa6c5212b60223ceaf64e61"
 
+go-test:
+	go test
+
 go-build:
 	go build -o bin/main main.go
 
@@ -30,6 +33,6 @@ compile:
 	GOOS=windows go build -o bin/main-windows main.go
 	GOOS=linux go build -o bin/main-linux main.go
 
-all: go-build go-exec
+all: go-test go-build go-exec
 
 all-docker: docker-stop docker-mongo docker-build docker-exec

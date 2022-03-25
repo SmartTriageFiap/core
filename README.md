@@ -298,3 +298,12 @@ https://codebeautify.org/base64-to-image-converter
     - Maintain endpoint routes
 - services
     - Other services required for application
+
+## How to test
+#
+
+To test the application, you must run the command below:
+
+    make go-test
+
+Make sure mongodb is running before testing.
