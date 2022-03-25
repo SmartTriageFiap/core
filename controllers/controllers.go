@@ -44,6 +44,7 @@ func CheckPacient(w http.ResponseWriter, r *http.Request) {
 	err := CollectionQueue.FindOne(Ctx, bson.D{{"salt", salt}}).Decode(&result)
 	if err != nil || err == mongo.ErrNoDocuments {
 		w.WriteHeader(http.StatusNotFound)
+		return
 	}
 
 	json.NewEncoder(w).Encode(result)
@@ -59,7 +60,7 @@ func ReturnQuestions(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var results []bson.M
-	if err = cursor.All(context.TODO(), &results); err != nil {
+	if err = cursor.All(Ctx, &results); err != nil {
 		panic(err)
 	}
 
@@ -165,4 +166,22 @@ func SavePatientData(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Println(result.InsertedID)
 
+}
+
+func DeletePatientQueue(w http.ResponseWriter, r *http.Request) {
+	db := database.Connect()
+	CollectionQueue = db.Collection("queue")
+
+	vars := mux.Vars(r)
+	cpf := vars["cpf"]
+	salt := services.Salt(cpf)
+
+	filter := bson.D{{"salt", salt}}
+
+	result, err := CollectionQueue.DeleteOne(Ctx, filter)
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println(result.DeletedCount)
 }

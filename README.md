@@ -260,6 +260,11 @@ See variables below:
 
     ![QRCODE](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAEAAQMAAABmvDolAAAABlBMVEX///8AAABVwtN+AAABn0lEQVR42uyYvfHrIBDEl3GgkBJcCqVBaZSiEhQq0LBv9pDkr+f0P+ZGlxn9Eh/L7QKuuuqqn61I1RprBibOyOeSL2AGcFuRCjfgTrZzyReQ2ARQfSBLO5ccApElqA81h9UzUMHNVO0VMAnvfUD6JvvRgXNGhW1a+nZ/GWIjAydXtMN3MqxfjGdoQHvbbmRF0F9PbJpUfNXDzwMAcgNizVqfgUDOqTRnQO+DfDNspmD8t1HDAyT1qZ9Ns0+zlQ2uAP2ykcNALkil2dKTql0AURLGtCRS212zqfrVWD0AvQmLzqsd28BFydYfoD6QRSFhlqqjstCz7B0AuFdznO6bOrwKCc/G6QKwUYyJOq/a92KZ9t1xhgdkrIEW8MxxSlcA/AEwCWea4xTBNb8GvvGByAqbUTapkHjUOhJwcNUin6JtP6Ef0X1s4LhnWTxQgmeftx/XycGBx4sWdc8qex/cAftTDztw1MNYPQGAGYouYtaAz5c9JwDCnmlXJYZAb8ChatzshtKPsDvgnFH7U499ebuQjg9cddVVf17/AgAA//8RZkON4G3J3QAAAABJRU5ErkJggg==)
 
+
+- Method: DELETE   Endpoint: /v1/hmv/questions/{cpf}
+    - Return only status code 200 on success
+
+
 - Method: POST  Endpoint: /v1/hmv/questions/{cpf}/confirm
     - Example Body:
     ```json
